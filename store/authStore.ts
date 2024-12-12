@@ -6,6 +6,7 @@ interface AuthState {
   isAuthenticated: boolean;
   login: (email: string, password: string) => void;
   logout: () => void;
+  register: (name: string, email: string, password: string) => void;
 }
 
 interface User {
@@ -28,4 +29,10 @@ export const useAuthStore = create<AuthState>((set) => ({
   },
   logout: () => 
     set({ user: null, token: null, isAuthenticated: false }),
+  register: (name, email, password ) => {
+    const user = { id: '1', name, email, password };
+    const token = 'abc123';
+    console.log('USER', { user });
+    set({ user, token, isAuthenticated: true })
+  },
 }));

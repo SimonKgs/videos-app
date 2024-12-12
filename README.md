@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Video App
 
-## Getting Started
+Es una aplicación creada con NextJS y TypeScript, tiene el objetivo de poder subir videos que se guardarán en la base de datos y en Cloudinary.
 
-First, run the development server:
+Los usuarios tendrán que validarse para poder realizar las acciones de subida y visualización de videos. Su zona privada consta de 2 pantallas, por un la galería de videos donde verán todos los videos públicos y por otro la zona donde podrán subir.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Los usuarios podrán darle like a un video y se contarán las veces que se reproduce.
+
+## Para usar este proyecto en desarrollo
+
+1. Lo primero debes clonarlo o descargarlo de la url
+
+2. Después deber instalar las dependencias
+```
+npm i
+```
+3. Configurar Cloudinary
+
+Necesitarás renombrar el archivo copy.env.file to .env.local y modificar sus valores con los tuyos propios, para este punto debes tener o crear una cuenta en cloudinary es donde se almacenarán los videos.
+
+```
+CLOUDINARY_CLOUD_NAME:
+Lo encontraras segun entras a tu cuenta es el product environment, un desplegable arriba a la izquierda
+CLOUDINARY_API_KEY:
+Debes crearla, en settings API Keys 
+CLOUDINARY_API_SECRET:
+Cuando creas la API KEY también tendras el API secret
+CLOUDINARY_UPLOAD_PRESET:
+También se debe crear, settings -> Upload presets, es la ruta a la que se subirán los assets
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Renombrar template.env.file -> .env y levantar la base de datos
+```docker compose up -d```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+5. Ejecutar las migraciones en prisma
+```npx prisma migrate dev```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+6. Insertar la semilla inicial
+```npm run seed```
 
-## Learn More
+10. Ejecutar el proyecto
+```npm run dev```
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Ejecutar en producción

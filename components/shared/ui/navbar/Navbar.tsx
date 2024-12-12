@@ -6,7 +6,7 @@ import { GoVideo } from "react-icons/go"
 import { IoIosVideocam } from "react-icons/io";
 import { MdCloudUpload } from "react-icons/md";
 import { useAuthStore } from "@/store";
-import LoginButton from "../../auth/login/Login-component";
+import LogoutButton from "../../auth/logout-button/logout-component";
 
 const USER_ID = 1;
 
@@ -56,7 +56,7 @@ export const Navbar = () => {
             }
 
             {/* AUTH */}
-            <LoginButton />
+            <LogoutButton />
         </nav>
     )
 }

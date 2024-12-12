@@ -11,6 +11,9 @@ export const VideoGallery = () => {
     const [currentVideo, setCurrentVideo] = useState(0);
     // this line extracts the id from the dynamic route
     const { id } = useParams();
+
+    console.log(videos);
+    
     console.log('ID FROM DYNAMIC ROUTE', id);
 
     // TODO: Load Videos from the DB using an API endpoint
@@ -19,8 +22,15 @@ export const VideoGallery = () => {
     return (
         <div className='flex flex-col'>
             VideoGallery
-            <MainVideo video={videos[currentVideo]} />
-            <GridList videos={videos} />
+            <MainVideo 
+                video={videos[currentVideo]} 
+                setCurrentVideo={setCurrentVideo} 
+                videosLength={videos.length}
+            />
+            <GridList 
+                videos={videos} 
+                setCurrentVideo={setCurrentVideo} 
+            />
         </div>
     )
 }

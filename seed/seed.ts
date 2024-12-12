@@ -1,94 +1,112 @@
 interface SeedVideo {
-    access_mode:   "public" | "private";
-    asset_id:      string;
+    accessMode:   "public" | "private";
+    assetId:      string;
     bytes:         number;
-    created_at:    Date;
     folder:        string;
     format:        string;
     height:        number;
     likes?:        number;
     name?:         string;
-    public_id:     string;
-    resource_type: "video";
-    secure_url:    string;
+    publicId:     string;
+    resourceType: "video";
+    secureUrl:    string;
     times_watched?: number; 
     type:          "upload";
     url:           string;
     version:       number;
     width:         number;
+    userId:       string;
+    // cloudinary response is like: 
+    // access_mode, asset_id, public_id, resource_type, user_id, secure_url
+}
+
+
+interface SeedUser {
+    name: string;
+    email: string;
+    password: string;
 }
 
 
 interface SeedData {
     resources: SeedVideo[],
+    users: SeedUser[]
 }
 
 
 export const initialData: SeedData = {
+    users: [
+        {
+            name: "Jhon Doe",
+            email: "jhon@doe.com",
+            password: "password"
+        }
+    ],
     resources: [
         {
-            asset_id: "c9812081343f73b292b7e679c79aa523",
-            public_id: "videos/asd-1733738816888",
+            assetId: "c9812081343f73b292b7e679c79aa523",
+            publicId: "videos/asdX-1733738816888",
             format: "mp4",
             version: 1733738827,
-            resource_type: "video",
+            resourceType: "video",
             type: "upload",
-            created_at: "2024-12-09T10:07:07Z" as unknown as Date,
             bytes: 29243769,
             width: 2560,
             height: 1440,
             folder: "videos",
-            access_mode: "public",
-            url: "http://res.cloudinary.com/dtts0tqni/video/upload/v1733738827/videos/asd-1733738816888.mp4",
-            secure_url: "https://res.cloudinary.com/dtts0tqni/video/upload/v1733738827/videos/asd-1733738816888.mp4"
+            accessMode: "public",
+            url: "http://res.cloudinary.com/dtts0tqni/video/upload/v1733740185/videos/asdasd-1733740182567.mp4",
+            secureUrl: "https://res.cloudinary.com/dtts0tqni/video/upload/v1733740185/videos/asdasd-1733740182567.mp4",
+            userId: "1"
         },
         {
-            asset_id: "c9812081343f73b292b7e679c79aa525",
-            public_id: "videos/asd-1733738816888",
+            assetId: "c9812081343fasd73b292b7e679c79aa523",
+            publicId: "videos/asdR-1733738816888",
             format: "mp4",
             version: 1733738827,
-            resource_type: "video",
+            resourceType: "video",
             type: "upload",
-            created_at: "2024-12-09T10:07:07Z" as unknown as Date,
             bytes: 29243769,
             width: 2560,
             height: 1440,
             folder: "videos",
-            access_mode: "public",
-            url: "http://res.cloudinary.com/dtts0tqni/video/upload/v1733738827/videos/asd-1733738816888.mp4",
-            secure_url: "https://res.cloudinary.com/dtts0tqni/video/upload/v1733738827/videos/asd-1733738816888.mp4"
+            accessMode: "public",
+            url: "http://res.cloudinary.com/dtts0tqni/video/upload/v1733759475/videos/fasd5-1733759462950.mp4",
+            secureUrl: "https://res.cloudinary.com/dtts0tqni/video/upload/v1733759475/videos/fasd5-1733759462950.mp4",
+            userId: "1"
         },
         {
-            asset_id: "c9812081343f73ba92b7e679c79aa525",
-            public_id: "videos/asd-1733738816888",
+            assetId: "c9812081343f73b2asd92b7e679c79aa523",
+            publicId: "videos/asdG-1733738816888",
             format: "mp4",
             version: 1733738827,
-            resource_type: "video",
+            resourceType: "video",
             type: "upload",
-            created_at: "2024-12-09T10:07:07Z" as unknown as Date,
             bytes: 29243769,
             width: 2560,
             height: 1440,
             folder: "videos",
-            access_mode: "public",
-            url: "http://res.cloudinary.com/dtts0tqni/video/upload/v1733738827/videos/asd-1733738816888.mp4",
-            secure_url: "https://res.cloudinary.com/dtts0tqni/video/upload/v1733738827/videos/asd-1733738816888.mp4"
+            accessMode: "public",
+            url: "http://res.cloudinary.com/dtts0tqni/video/upload/v1733491031/videos/fire2_q8r8mc.mp4",
+            secureUrl: "https://res.cloudinary.com/dtts0tqni/video/upload/v1733491031/videos/fire2_q8r8mc.mp4",
+            userId: "1"
         },
         {
-            asset_id: "c9812081343f73b292s7e679c79aa525",
-            public_id: "videos/asd-1733738816888",
+            assetId: "c9812081343f73b292b7e67asd9c79aa523",
+            publicId: "videos/asTd-1733738816888",
             format: "mp4",
             version: 1733738827,
-            resource_type: "video",
+            resourceType: "video",
             type: "upload",
-            created_at: "2024-12-09T10:07:07Z" as unknown as Date,
             bytes: 29243769,
             width: 2560,
             height: 1440,
             folder: "videos",
-            access_mode: "public",
-            url: "http://res.cloudinary.com/dtts0tqni/video/upload/v1733738827/videos/asd-1733738816888.mp4",
-            secure_url: "https://res.cloudinary.com/dtts0tqni/video/upload/v1733738827/videos/asd-1733738816888.mp4"
+            accessMode: "public",
+            url: "http://res.cloudinary.com/dtts0tqni/video/upload/v1733759475/videos/fasd5-1733759462950.mp4",
+            secureUrl: "https://res.cloudinary.com/dtts0tqni/video/upload/v1733759475/videos/fasd5-1733759462950.mp4",
+            userId: "1"
         },
+ 
     ]
 }
