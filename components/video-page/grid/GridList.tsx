@@ -15,10 +15,10 @@ export const GridList = ({ videos, setCurrentVideo }: Props) => {
                 videos.map((video: Video) => (
                     <div
                         onClick={() => setCurrentVideo(videos.indexOf(video))} 
-                        key={`${video.asset_id}_div`} 
+                        key={`${video.assetId}_div`} 
                         className='min-h-44 border-2 border-black'
                     >
-                        <GridItem  key={video.asset_id} video={video} />
+                        <GridItem  key={video.assetId} video={video} />
                     </div>
                 ))
             }

@@ -10,13 +10,18 @@ import { useRouter } from 'next/navigation';
 export default function () {
 
     
-    const { isAuthenticated, user, login } = useAuthStore();
+    const { isAuthenticated, user, login, message } = useAuthStore();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const router = useRouter();
 
-    const handleLogin = () => {
-        login(email, password);
+    const handleLogin = async() => {
+        await login(email, password);
+
+        if (!isAuthenticated) {
+            setError('Invalid credentials.');
+        }
     };
 
     useEffect(() => {
@@ -45,13 +50,15 @@ export default function () {
 
             <label htmlFor="password">Password</label>
             <input
-                className="text-zinc-950 px-5 py-2 border bg-gray-200 rounded mb-5"
+                className="text-zinc-950 px-5 py-2 border bg-gray-200 rounded mb-2"
                 type="password"
                 id="password"
                 placeholder="*******"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
+
+            { error && <p className="text-red-500 mb-5">{error}</p> }
 
             <CustomButton
                 attachedFunction={handleLogin} 

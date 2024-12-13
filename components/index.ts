@@ -9,3 +9,4 @@ export * from "./shared/auth/logout-button/logout-component";
 export * from "./shared/auth/unauthorized/Unauthorized.component";
 export * from "./shared/home-page/hero-section/Hero.component";
 export * from "./shared/home-page/cta/cta-login.component";
+export * from "./upload-page/UploadVideoForm"

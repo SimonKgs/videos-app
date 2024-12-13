@@ -9,22 +9,56 @@ import { useRouter } from 'next/navigation';
 
 export default function () {
 
-    const { user, register } = useAuthStore();
+    const { user, isAuthenticated,register } = useAuthStore();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
+    const [errors, setErrors] = useState<Record<string, string>>({});
     const router = useRouter();
 
-    const handleRegister = () => {
-        register(name, email, password);
+
+
+    const validateForm = () => {
+        const newErrors: Record<string, string> = {};
+    
+        if (!name.trim()) newErrors.name = 'Name is required.';
+        if (!email.trim()) {
+          newErrors.email = 'Email is required.';
+        } else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+          newErrors.email = 'Enter a valid email.';
+        }
+        if (!password || password.length < 8) newErrors.password = 'Password min length is 8.';
+        if (password !== password2) newErrors.password2 = 'Passwords do not match.';
+    
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0; // Valid if no errors
+    };
+
+    const handleRegister = async () => {
+        if (!validateForm())  return;
+
+        try {
+            await register(name, email, password);
+            const updatedUser = useAuthStore.getState().user;
+            
+            if (!updatedUser?.id) {
+                const newErrors: Record<string, string> = {};
+                newErrors.form = `Registration failed. Try again.`;
+                setErrors(newErrors);
+            }
+            
+        } catch (error) {
+            setErrors({ form: 'Registration failed. Try again.' });
+        }
     };
 
     useEffect(() => {
-        if (user?.id) {
+        if (isAuthenticated) {
             router.push(`/${user?.id}/videos`);
         }
-    }, [user]);
+    }, [isAuthenticated]);
+
 
 
     return (
@@ -34,48 +68,63 @@ export default function () {
 
         <div className="flex flex-col">
 
-            <label htmlFor="name">Name</label>
-            <input
-                className="text-zinc-950 px-5 py-2 border bg-gray-200 rounded mb-5"
-                type="text"
-                id='name'
-                placeholder='eg: email@domain.com'
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-            />
+            <div className='flex flex-col w-full'>
+                <label htmlFor="name">Name</label>
+                <input
+                    className="text-zinc-950 px-5 py-2 border bg-gray-200 rounded mb-2"
+                    type="text"
+                    id='name'
+                    placeholder='eg: email@domain.com'
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
+                {errors.name && <p className="text-red-500 mb-5">{errors.name}</p>}
+            </div>
 
-            <label htmlFor="email">Email</label>
-            <input
-                className="text-zinc-950 px-5 py-2 border bg-gray-200 rounded mb-5"
-                type="email"
-                id='email'
-                placeholder='eg: email@domain.com'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
+            <div className='flex flex-col w-full'>
+                <label htmlFor="email">Email</label>
+                <input
+                    className="text-zinc-950 px-5 py-2 border bg-gray-200 rounded mb-2"
+                    type="email"
+                    id='email'
+                    placeholder='eg: email@domain.com'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                {errors.email && <p className="text-red-500 mb-5">{errors.email}</p>}
+            </div>
 
-            <label htmlFor="password">Password</label>
-            <input
-                className="text-zinc-950 px-5 py-2 border bg-gray-200 rounded mb-5"
-                type="password"
-                id="password"
-                placeholder="*******"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <label htmlFor="password">Repeat the password</label>
-            <input
-                className="text-zinc-950 px-5 py-2 border bg-gray-200 rounded mb-5"
-                type="password"
-                id="password2"
-                placeholder="*******"
-                value={password2}
-                onChange={(e) => setPassword2(e.target.value)}
-            />
+            <div className='flex flex-col w-full'>
+                <label htmlFor="password">Password</label>
+                <input
+                    className="text-zinc-950 px-5 py-2 border bg-gray-200 rounded mb-2"
+                    type="password"
+                    id="password"
+                    placeholder="*******"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                {errors.password && <p className="text-red-500 mb-5">{errors.password}</p>}
+            </div>
+
+            <div className='flex flex-col w-full'>
+                <label htmlFor="password">Repeat the password</label>
+                <input
+                    className="text-zinc-950 px-5 py-2 border bg-gray-200 rounded mb-2"
+                    type="password"
+                    id="password2"
+                    placeholder="*******"
+                    value={password2}
+                    onChange={(e) => setPassword2(e.target.value)}
+                />
+                {errors.password2 && <p className="text-red-500 mb-5">{errors.password2}</p>}
+            </div>
+
+            {errors.form && <p className="text-red-500 mb-5">{errors.form}</p>}
 
             <CustomButton
                 attachedFunction={handleRegister} 
-                className='text-gray-200 bg-green-600 hover:bg-green-800' 
+                className='text-gray-200 bg-green-600 hover:bg-green-800 mt-5' 
                 text="Create new account" 
             />
 

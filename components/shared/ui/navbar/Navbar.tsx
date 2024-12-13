@@ -8,12 +8,11 @@ import { MdCloudUpload } from "react-icons/md";
 import { useAuthStore } from "@/store";
 import LogoutButton from "../../auth/logout-button/logout-component";
 
-const USER_ID = 1;
 
 
 export const Navbar = () => {
 
-    const { isAuthenticated } = useAuthStore();
+    const { user, isAuthenticated } = useAuthStore();
 
 
     const onLogout = () => {
@@ -40,13 +39,13 @@ export const Navbar = () => {
             {
                 isAuthenticated &&
                     <div className="flex gap-4 sm:gap-8 md:gap-10">
-                        <Link href={`/${USER_ID}/videos`}>
+                        <Link href={`/${user?.id}/videos`}>
                             <span className="flex gap-2 text-xl items-center antialiased font-bold">
                                 <IoIosVideocam color="black" size={40} />
                                 <p className="hidden md:block">Videos</p>
                             </span>
                         </Link>
-                        <Link href={`/${USER_ID}/upload`}>
+                        <Link href={`/${user?.id}/upload`}>
                             <span className="flex gap-2 text-xl items-center antialiased font-bold">
                                 <MdCloudUpload color="black" size={40} />
                                 <p className="hidden md:block">Upload</p>

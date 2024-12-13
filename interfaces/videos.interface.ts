@@ -1,25 +1,38 @@
-export interface Video {
-    //todo: id:            string;
-    access_mode:   "public" | "private";
-    asset_id:      string;
-    bytes:         number;
-    created_at:    Date;
-    folder:        string;
-    format:        string;
-    height:        number;
-    likes?:        number;
-    name?:         string;
-    public_id:     string;
-    resource_type: "video";
-    secure_url:    string;
-    times_watched?: number; 
-    type:          "upload";
-    url:           string;
-    version:       number;
-    width:         number;
-}
 
+export interface User {
+    createdAt: Date; // Default: now()
+    email: string; // Unique
+    id: string; // UUID
+    name: string;
+    password: string;
+    videos: Video[]; // Relationship with Video model
+}
 
 export interface Videos {
-    videos: Video[],
+    videos: Video[];
+    user: User;
 }
+
+export interface Video {
+    accessMode: string; 
+    assetId: string; 
+    bytes: number;
+    createdAt: Date; 
+    folder: string | null;
+    format: string;
+    height: number;
+    id: string; 
+    likes: number; 
+    name?: string | null; 
+    publicId: string; // 
+    resourceType: string;
+    secureUrl: string;
+    timesWatched: number; 
+    type: string; 
+    url: string;
+    user?: User;
+    userId: string;
+    version: number;
+    width: number;
+  }
+  
