@@ -18,9 +18,10 @@ export default function () {
 
     const handleLogin = async() => {
         await login(email, password);
+        const currentMessage = useAuthStore.getState().message;
 
-        if (!isAuthenticated) {
-            setError('Invalid credentials.');
+        if (currentMessage) {
+            setError(currentMessage);
         }
     };
 
