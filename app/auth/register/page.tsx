@@ -42,6 +42,7 @@ export default function () {
             await register(name, email, password);
             const updatedUser = useAuthStore.getState().user;
             
+            
             if (!updatedUser?.id) {
                 const newErrors: Record<string, string> = {};
                 newErrors.form = `Registration failed. Try again.`;

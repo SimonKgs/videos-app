@@ -15,11 +15,11 @@ async function main() {
     
     // 2. Crear registros de pruebas
     // crear usuario unico
-    const createdUser =await prisma.user.create({
+    const createdUser = await prisma.user.create({
         data: {
-            name: 'Admin',
-            email: '6L2tO@example.com',
-            password: '123456',
+            name: 'Juno',
+            email: 'juno@gmail.com',
+            password: '$2b$10$0/kYONqk.8joIe3OVAFOYu6BIwF6URJhcfSK4LgilQHyk83hBWLom',
         }
     })
 

@@ -1,30 +1,37 @@
 'use client';
-import { Navbar, Unauthorized } from "@/components";
+import { Navbar } from "@/components";
 import { useAuthStore } from "@/store";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function RootLayout({
-    children,
-  }: Readonly<{
-    children: React.ReactNode;
-  }>) {
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  const { isAuthenticated, loading } = useAuthStore();
+  const validateToken = useAuthStore((state) => state.validateToken);
+  const router = useRouter();
 
-    const { isAuthenticated } = useAuthStore();
+  useEffect(() => {
+    validateToken(); // Trigger token validation
+  }, [validateToken]);
 
-    const router = useRouter();
+  useEffect(() => {
+    if (!loading && !isAuthenticated) {
+      router.push("/auth/login"); // Redirect only after validation completes
+    }
+  }, [loading, isAuthenticated, router]);
 
-    useEffect(() => {
-      if (!isAuthenticated) {
-        router.push("/auth/login"); // Redirect to login if not authenticated
-      }
-    }, [isAuthenticated]);
-
-
-    return (
-      <div className="bg-zinc-300">
-        <Navbar />
-        {children}
-      </div>
-    );
+  // Show a loading spinner or blank screen while validating
+  if (loading) {
+    return <div>Loading...</div>;
   }
+
+  return (
+    <div className="bg-zinc-300">
+      <Navbar />
+      {children}
+    </div>
+  );
+}

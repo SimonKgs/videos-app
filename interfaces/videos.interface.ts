@@ -4,6 +4,7 @@ export interface User {
     email: string; // Unique
     id: string; // UUID
     name: string;
+    token?: string;
     password: string;
     videos: Video[]; // Relationship with Video model
 }
