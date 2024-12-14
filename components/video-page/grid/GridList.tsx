@@ -16,7 +16,7 @@ export const GridList = ({ videos, setCurrentVideo }: Props) => {
                     <div
                         onClick={() => setCurrentVideo(videos.indexOf(video))} 
                         key={`${video.assetId}_div`} 
-                        className='min-h-44 border-2 border-black'
+                        className='min-h-44 border-2 border-black cursor-pointer'
                     >
                         <GridItem  key={video.assetId} video={video} />
                     </div>

@@ -1,5 +1,4 @@
 'use client';
-
 import Link from 'next/link';
 import { CustomButton } from '@/components';
 import { useAuthStore } from '@/store';
@@ -8,13 +7,21 @@ import { useRouter } from 'next/navigation';
 
 
 export default function () {
-
     
-    const { isAuthenticated, user, login, message } = useAuthStore();
+    const { isAuthenticated, user, login } = useAuthStore();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const router = useRouter();
+
+/**
+ * Handles the login process by calling the login function with the provided email and password.
+ * 
+ * After attempting to log in, it retrieves the current message from the authentication store.
+ * If there is a message, it sets it as the error message for display.
+ *
+ * @remarks This function is asynchronous and should be called within an async context.
+ */
 
     const handleLogin = async() => {
         await login(email, password);

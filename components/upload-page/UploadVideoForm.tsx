@@ -1,8 +1,7 @@
 'use client';
-import { uploadVideo } from '@/actions/videos/uploadVideo';
+import { uploadVideo } from '@/actions/videos/videosActions';
 import { useParams } from 'next/navigation';
 import { useRef, useState } from 'react';
-import { FaUpload } from 'react-icons/fa';
 import { VscLoading } from 'react-icons/vsc';
 
 export function UploadVideoForm() {

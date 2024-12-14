@@ -12,7 +12,7 @@ export const CustomButton = ({ text, attachedFunction, className = "", type }: P
     return (
         <button 
             onClick={attachedFunction} 
-            className={`transition-all duration-300 text-base md:text-lg font-bold rounded px-4 py-2 ${ className }`} 
+            className={`transition-all duration-300  text-base md:text-lg font-bold rounded px-4 py-2 ${ className }`} 
             { ...{ type } }
         >
             {text}
