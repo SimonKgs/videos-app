@@ -118,6 +118,9 @@ export const useAuthStore = create<AuthState>((set) => ({
     }
 
     const result = await validateToken(storedToken);
+
+    console.log('Result:', result);
+    
     if (result.isAuthenticated && result.user?.id === storedUserId) {
       set({ user: result.user, isAuthenticated: true, token: storedToken });
     } else {

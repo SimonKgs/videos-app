@@ -14,10 +14,14 @@ export default function RootLayout({
   const router = useRouter();
 
   useEffect(() => {
-    validateToken(); // Trigger token validation
+    console.log('Validating token...');
+    
+    validateToken();
   }, [validateToken]);
 
   useEffect(() => {
+    console.log("Loading:", loading);
+  console.log("Is Authenticated:", isAuthenticated);
     if (!loading && !isAuthenticated) {
       router.push("/auth/login"); // Redirect only after validation completes
     }

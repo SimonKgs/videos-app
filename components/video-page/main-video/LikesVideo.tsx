@@ -1,7 +1,6 @@
 
 
 import { likeVideo } from '@/actions/videos/videosActions';
-import { Video } from '@/interfaces';
 import { useEffect, useState } from 'react';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
@@ -22,7 +21,7 @@ export const LikesVideo = ( { videoId, likes }: Props) => {
     
     const [currentLikes, setCurrentLikes] = useState(likes);
     const [isLiked, setIsLiked] = useState(false);
-    
+    // TODO: CHECK WHY IS THIS RELOADING THE USER
     /**
      * Handles the logic when the user clicks the like button.
      * If the video is not already liked, it increments the like count and sets the liked state to true.

@@ -13,7 +13,6 @@ interface Props {
 
 export const MainVideo = ({ video, setCurrentVideo, videosLength }: Props) => {
 
-  const [isLiked, setIsLiked] = useState(false);
 
   const onEnded = () => {
     console.log('Ended');
@@ -27,7 +26,6 @@ export const MainVideo = ({ video, setCurrentVideo, videosLength }: Props) => {
   const onPlaying = () => {
     console.log('Playing', video.id);
   }
-
 
   return (
     <div className="flex flex-col w-full justify-center min-h-64 sm:min-h-96 mt-4 mb-8 sm:my-10">
