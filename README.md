@@ -78,7 +78,18 @@ Está estructurado por carpetas agrupando tipos de archivos:
 
 4. mejoras visuales
 
-# Problemas en la realización 
+# Problemas
 
-Falta de conocimiento en NextJS
-Problemas con la persistencia de la sesión por como está implementado en el layout, un middleware lo solucionaría
+1. Falta de conocimiento en NextJS
+
+2. Problemas con la persistencia de la sesión por como está implementado en el layout, un middleware lo solucionaría
+
+3. Tamaño de videos en producción se redujo a 5000KB, en desarrollo se añadió en next.config.ts
+const nextConfig: NextConfig = {
+  /* config options here */
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '10GB',
+    },
+  },
+};
