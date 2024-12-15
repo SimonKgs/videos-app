@@ -45,7 +45,7 @@ export default function () {
 
 
     return (
-        <div className="flex flex-col min-h-screen pt-32 sm:pt-52">
+        <div className="flex flex-col pt-32 sm:pt-52">
 
         <h1 className='text-4xl font-extrabold text-center mb-5'>Login</h1>
 
