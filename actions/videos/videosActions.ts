@@ -144,6 +144,68 @@ export const getAllVideos = async (): Promise<Video[]|null> => {
     }
 }
 
+
+/**
+ * Fetches a limited number of videos from the database, starting from a specified index.
+ * Each video includes associated user data.
+ *
+ * @param startIndex - The index from which to start fetching videos.
+ * @returns {Promise<Video[] | null>} A promise that resolves to an array of video objects
+ * including associated user data, or null if an error occurs.
+ *
+ * @throws Will throw an error if there is an issue retrieving the videos from the database.
+ */
+
+export const getVideos = async (startIndex: number): Promise<Video[] | null> => {
+  const INCREMENT = 6;
+  try {
+    const videos = await prisma.video.findMany({
+      skip: startIndex, // starts on the actual index
+      take: INCREMENT,
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+    });
+
+    return videos;
+  } catch (err) {
+    console.log(err);
+    throw new Error('Error fetching videos');
+  }
+};
+
+
+/**
+ * Retrieves the total number of videos stored in the database.
+ *
+ * @returns {Promise<number>} A promise that resolves to the total number of videos.
+ *
+ * @throws Will throw an error if there is an issue retrieving the video count from the database.
+ */
+export const getVideoCount = async (): Promise<number> => {
+  try {
+    const count = await prisma.video.count(); // Get the total number of videos
+    return count;
+  } catch (err) {
+    console.log(err);
+    throw new Error('Error fetching video count');
+  }
+};
+
+
+/**
+ * Retrieves a single video from the database by its ID.
+ *
+ * @param {string} id - The ID of the video to retrieve.
+ * @returns {Promise<Video | null>} A promise that resolves to the video if it exists, or null if it does not.
+ *
+ * @throws Will throw an error if there is an issue retrieving the video from the database.
+ */
 export const getVideoById = async (id: string) => {
   try {
       const video = await prisma.video.findUnique({ where: { id } });
@@ -222,7 +284,7 @@ export const incrementVideoViews = async (videoId: string): Promise<Video | null
           }
         }
       });
-  
+            
       return updatedVideo;
     } catch (error) {
       console.error('Error incrementing video views:', error);

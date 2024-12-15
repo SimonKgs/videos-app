@@ -23,7 +23,6 @@ export default function RootLayout({
   }, []);
 
   useEffect(() => {
-    console.log('TOKEN', token)
     if (!loading && !isAuthenticated) {
       router.replace("/auth/login");
     }

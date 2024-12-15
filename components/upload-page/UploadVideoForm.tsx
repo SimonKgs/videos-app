@@ -1,13 +1,14 @@
 'use client';
 import { uploadVideo } from '@/actions/videos/videosActions';
 import { useParams } from 'next/navigation';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { VscLoading } from 'react-icons/vsc';
 
 export function UploadVideoForm() {
   const [videoName, setVideoName] = useState('');
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [isSuccessful, setIsSuccessful] = useState(false);
 
   const [fileName, setFileName] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -19,7 +20,6 @@ export function UploadVideoForm() {
   if (!userId) {
     throw new Error("User ID must not be null or undefined");
   }
-
 
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,30 +40,36 @@ export function UploadVideoForm() {
       return;
     }
 
-    // Create a form data payload
-    
-
     try {
        const response = await uploadVideo( { videoName, videoFile, userId } );
 
-       console.log(response);
+       setIsSuccessful(true);
 
        if (!response.ok) {
+        setIsSuccessful(false);
         throw new Error('Failed to upload video.');
        }
        
     } catch (error) {
-      console.error('Error:', error);
+      setIsSuccessful(false);
       throw new Error('An error occurred during upload.');
     } finally {
       setIsUploading(false);
     }
   };
 
+  useEffect(() => { 
+    if (isSuccessful) {
+      setTimeout(() => {
+        setIsSuccessful(false);
+      }, 3000);
+    }
+  }, [isSuccessful]);
+
   return (
     <form className='flex flex-col gap-4 md:w-6/12 w-full px-2' onSubmit={handleSubmit}>
         <div className="flex flex-col w-full items-center mb-2">
-          <label className="flex flex-1 w-full p-2 text-slate-300 font-medium text-xl">
+          <label className="flex flex-1 w-full p-2 font-medium text-xl">
             Video Name
           </label>
           <input
@@ -82,9 +88,9 @@ export function UploadVideoForm() {
             onClick={handleButtonClick}
             className="flex-1 flex items-center justify-center py-2 text-white bg-indigo-600 rounded-md shadow hover:bg-indigo-700"
           >
-            Upload File
+            Select File
           </button>
-          <div className={`flex-1 flex p-2 items-center justify-center  ${fileName ? 'bg-indigo-300 text-black' : 'bg-black'}`}>
+          <div className={`flex-1 flex p-2 items-center justify-center  ${fileName ? 'bg-indigo-300 text-black' : 'bg-black text-white'}`}>
             {fileName ? `Selected file: ${fileName}` : "No file selected"}
           </div>
         </div>
@@ -108,6 +114,13 @@ export function UploadVideoForm() {
           isUploading && (
             <div className='flex items-center justify-center'>
               <VscLoading fill="#ff3e00" size={70} className="animate-spin" />        
+            </div>
+          )
+        }
+        {
+          isSuccessful && (
+            <div className='flex items-center justify-center'>
+              <p className='text-green-950 text-xl'>Video uploaded successfully</p>       
             </div>
           )
         }

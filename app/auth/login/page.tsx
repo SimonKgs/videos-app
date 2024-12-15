@@ -49,7 +49,7 @@ export default function () {
 
         <h1 className='text-4xl font-extrabold text-center mb-5'>Login</h1>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col justify-center">
 
             <label htmlFor="email">Email</label>
             <input
@@ -90,7 +90,7 @@ export default function () {
             </Link>
 
             { loading &&
-                <div className="flex items-center w-full my-5">
+                <div className="flex items-center justify-center w-full my-5">
                      <VscLoading fill="#ff3e00" size={70} className="animate-spin" />
                 </div>
             }

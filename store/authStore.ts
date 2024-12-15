@@ -75,7 +75,6 @@ export const useAuthStore = create<AuthState>((set) => ({
   register: async (name, email, password) => {
     try {
       const response = await register(name, email, password);
-      console.log('Response:', response);
 
       if (!response.ok) {
         set({ message: response.msg }); // Set error message
@@ -111,7 +110,6 @@ export const useAuthStore = create<AuthState>((set) => ({
 
     const storedToken = localStorage.getItem('videos_token');
     const storedUserId = localStorage.getItem('userId');
-    console.log('storedToken', storedToken);
     
     if (!storedToken || !storedUserId) {
       set({ isAuthenticated: false, user: null, token: null });
