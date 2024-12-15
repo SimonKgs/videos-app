@@ -74,9 +74,12 @@ Está estructurado por carpetas agrupando tipos de archivos:
 
 2. Crear la tabla likes, que almacene video -> like de usuario y migrar la db para implementarlo, esto conlleva algún retoque en el código, para cuando se aumente un like se creé un nuevo registro y cuando se recuperan los videos, si el id del user está en la tabla con el id del current video prohibir nuevos likes.
 
-3. actualmente se cuenta un video como visto al darle play para temas de analitics quizás fuese mejor contar el tiempo o el porcentaje del video visto, o no dar el view hasta x segundos
+3. añadir regex al password y más comprobaciones a los inputs para seguridad
 
-4. mejoras visuales
+4. actualmente se cuenta un video como visto al darle play para temas de analitics quizás fuese mejor contar el tiempo o el porcentaje del video visto, o no dar el view hasta x segundos
+
+5. mejoras visuales
+
 
 # Problemas
 
