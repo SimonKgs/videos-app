@@ -45,12 +45,10 @@ const VideoGalleryClient: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    console.log('TRYING TO GET MORE VIDEOS', currentIndex, );
     
     const fetchVideos = async () => {
       try {
         const videos = await getVideos(currentIndex);
-        console.log('MORE VIDEOS', videos);
         
         setVideos(videos);
       } catch (error) {

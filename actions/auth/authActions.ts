@@ -68,7 +68,6 @@ export async function register(name: string, email: string, password: string) {
  * }
  */
   export async function validateTokenAction(token: string) {
-    console.log('token ON ACTION', token);
     
     try {
       const decoded: any = jwt.verify(token, SECRET_KEY);

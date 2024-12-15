@@ -24,7 +24,8 @@ interface Props {
 export const uploadVideo = async ({videoName, videoFile, userId}: Props) => {
 
     const { CLOUDINARY_URL, CLOUDINARY_CLOUD_NAME, CLOUDINARY_UPLOAD_PRESET } = process.env;
-
+    console.log("CLOUDINARY_URL", CLOUDINARY_URL);
+    
     if (!CLOUDINARY_CLOUD_NAME || !CLOUDINARY_UPLOAD_PRESET) {
       return NextResponse.json(
         { message: 'Missing Cloudinary credentials' },

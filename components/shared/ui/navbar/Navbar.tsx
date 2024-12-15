@@ -14,16 +14,6 @@ export const Navbar = () => {
 
     const { user, isAuthenticated } = useAuthStore();
 
-
-    const onLogout = () => {
-        console.log("logout");
-    }
-
-    const onLogin = () => {
-        console.log("login");
-    }
-
-
     return (
         <nav className="flex px-5 justify-between items-center w-full border-b-2 border-gray-900 py-2">
             {/* LOGO */}
