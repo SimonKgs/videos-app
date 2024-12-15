@@ -17,8 +17,8 @@ async function main() {
     // crear usuario unico
     const createdUser = await prisma.user.create({
         data: {
-            name: 'Juno',
-            email: 'juno@gmail.com',
+            name: 'Juna',
+            email: 'juna@gmail.com',
             password: '$2b$10$0/kYONqk.8joIe3OVAFOYu6BIwF6URJhcfSK4LgilQHyk83hBWLom',
         }
     })

@@ -29,7 +29,7 @@ CLOUDINARY_UPLOAD_PRESET:
 También se debe crear, settings -> Upload presets, es la ruta a la que se subirán los assets
 ```
 
-4. Renombrar template.env.file -> .env y levantar la base de datos
+4. Tener instalado docker, renombrar el archivo template.env.file -> .env y levantar la base de datos con:
 ```docker compose up -d```
 
 5. Ejecutar las migraciones en prisma
@@ -40,5 +40,3 @@ También se debe crear, settings -> Upload presets, es la ruta a la que se subir
 
 10. Ejecutar el proyecto
 ```npm run dev```
-
-## Ejecutar en producción

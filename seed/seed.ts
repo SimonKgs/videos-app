@@ -36,11 +36,7 @@ interface SeedData {
 
 export const initialData: SeedData = {
     users: [
-        {
-            name: "Jhon Doe",
-            email: "jhon@doe.com",
-            password: "password"
-        }
+        
     ],
     resources: [
         {
@@ -75,38 +71,5 @@ export const initialData: SeedData = {
             secureUrl: "https://res.cloudinary.com/dtts0tqni/video/upload/v1733759475/videos/fasd5-1733759462950.mp4",
             userId: "1"
         },
-        {
-            assetId: "c9812081343f73b2asd92b7e679c79aa523",
-            publicId: "videos/asdG-1733738816888",
-            format: "mp4",
-            version: 1733738827,
-            resourceType: "video",
-            type: "upload",
-            bytes: 29243769,
-            width: 2560,
-            height: 1440,
-            folder: "videos",
-            accessMode: "public",
-            url: "http://res.cloudinary.com/dtts0tqni/video/upload/v1733491031/videos/fire2_q8r8mc.mp4",
-            secureUrl: "https://res.cloudinary.com/dtts0tqni/video/upload/v1733491031/videos/fire2_q8r8mc.mp4",
-            userId: "1"
-        },
-        {
-            assetId: "c9812081343f73b292b7e67asd9c79aa523",
-            publicId: "videos/asTd-1733738816888",
-            format: "mp4",
-            version: 1733738827,
-            resourceType: "video",
-            type: "upload",
-            bytes: 29243769,
-            width: 2560,
-            height: 1440,
-            folder: "videos",
-            accessMode: "public",
-            url: "http://res.cloudinary.com/dtts0tqni/video/upload/v1733759475/videos/fasd5-1733759462950.mp4",
-            secureUrl: "https://res.cloudinary.com/dtts0tqni/video/upload/v1733759475/videos/fasd5-1733759462950.mp4",
-            userId: "1"
-        },
- 
     ]
 }
