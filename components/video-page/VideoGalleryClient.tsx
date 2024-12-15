@@ -88,7 +88,7 @@ const VideoGalleryClient: React.FC = () => {
         </div>
         <div>
           {
-            currentIndex < totalVideos && (
+            currentIndex < totalVideos && totalVideos > INDEX_INCREMENT && (
               <CustomButton className='bg-blue-600 text-white hover:bg-blue-800' text="Next Videos" attachedFunction={() => setCurrentIndex(currentIndex + INDEX_INCREMENT)} />
             )
           }
