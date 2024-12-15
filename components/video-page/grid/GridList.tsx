@@ -1,24 +1,25 @@
+import { Dispatch, SetStateAction } from 'react';
 import { Videos, Video } from '../../../interfaces/videos.interface';
 import { GridItem } from './GridItem';
 
 interface Props {
     videos: Video[],
-    setCurrentVideo: React.Dispatch<React.SetStateAction<number>>
+    onChangeVideo:  (videoId: string) => Promise<void>
 }
 
 
-export const GridList = ({ videos, setCurrentVideo }: Props) => {
+export const GridList = ({ videos, onChangeVideo }: Props) => {
     
     return (
-        <div className='grid grid-cols-2 md:grid-cols-3 min-h-96 gap-4'>
+        <div className='w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
             {
                 videos.map((video: Video) => (
                     <div
-                        onClick={() => setCurrentVideo(videos.indexOf(video))} 
+                        onClick={() => onChangeVideo(video.id)} 
                         key={`${video.assetId}_div`} 
-                        className='min-h-44 border-2 border-black cursor-pointer'
+                        className='flex flex-col min-h-44 cursor-pointer bg-black rounded p-2 text-white'
                     >
-                        <GridItem  key={video.assetId} video={video} />
+                        <GridItem key={video.assetId} video={video} />
                     </div>
                 ))
             }

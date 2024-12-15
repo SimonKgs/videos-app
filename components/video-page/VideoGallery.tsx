@@ -9,10 +9,9 @@ import { Video } from '@prisma/client';
  * @returns {JSX.Element} The VideoGalleryClient component populated with the list of videos.
  */
 
-export const VideoGallery = async () => {
+export const VideoGallery = () => {
   // Fetch videos from the database
-  const videos: Video[] | null = await getAllVideos();
 
   // Handle the `null` case by providing an empty array as the default
-  return <VideoGalleryClient videos={videos || []} />;
+  return <VideoGalleryClient />;
 };

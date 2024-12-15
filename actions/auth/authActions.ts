@@ -1,5 +1,4 @@
 'use server';
-
 import prisma from '@/lib/prisma';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -68,7 +67,9 @@ export async function register(name: string, email: string, password: string) {
  *   console.log(result.user);
  * }
  */
-  export async function validateToken(token: string) {
+  export async function validateTokenAction(token: string) {
+    console.log('token ON ACTION', token);
+    
     try {
       const decoded: any = jwt.verify(token, SECRET_KEY);
   

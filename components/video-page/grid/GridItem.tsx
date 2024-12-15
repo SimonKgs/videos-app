@@ -7,8 +7,9 @@ interface Props {
 export const GridItem = ({ video }: Props) => {
   return (
     <>
-        <p className='py-2'>{ video.name }</p>
-        <video src={video.url}></video>
+        <p className='py-2 font-semibold capitalize'>{ video.name }</p>
+        <hr className='bg-white my-1'/>
+        <video className="max-h-44 bg-black w-full" src={video.url}></video>
     </>
   )
 }

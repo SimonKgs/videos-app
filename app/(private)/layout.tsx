@@ -1,5 +1,6 @@
 'use client';
 import { Navbar } from "@/components";
+import { LoadingPage } from "@/components/shared/ui/loading/LoadingPage.component";
 import { useAuthStore } from "@/store";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -9,31 +10,32 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { isAuthenticated, loading } = useAuthStore();
-  const validateToken = useAuthStore((state) => state.validateToken);
+  const { isAuthenticated, loading, validateToken, token } = useAuthStore();
   const router = useRouter();
 
   useEffect(() => {
-    console.log('Validating token...');
+    const validatingToken = async () => {
+      await validateToken();
+    };
+
+    validatingToken();
     
-    validateToken();
-  }, [validateToken]);
+  }, []);
 
   useEffect(() => {
-    console.log("Loading:", loading);
-  console.log("Is Authenticated:", isAuthenticated);
+    console.log('TOKEN', token)
     if (!loading && !isAuthenticated) {
-      router.push("/auth/login"); // Redirect only after validation completes
+      router.replace("/auth/login");
     }
-  }, [loading, isAuthenticated, router]);
+  }, [token]);
 
   // Show a loading spinner or blank screen while validating
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingPage />;
   }
 
   return (
-    <div className="bg-zinc-300">
+    <div className="bg-zinc-400">
       <Navbar />
       {children}
     </div>

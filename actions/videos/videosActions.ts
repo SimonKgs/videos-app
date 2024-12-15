@@ -68,7 +68,6 @@ export const uploadVideo = async ({videoName, videoFile, userId}: Props) => {
       }
 
       const data = await response.json();
-      console.log('THIS DATA',data);
 
       const videoRecord = {
         accessMode: data.access_mode || "public", // Replace with default if not available
@@ -97,11 +96,8 @@ export const uploadVideo = async ({videoName, videoFile, userId}: Props) => {
             userId
           }
         })
-      } else {
-        console.log('NO DATA');
-      }
+      } 
       
-
       return { 
         message: 'Video uploaded successfully', 
         url: data.secure_url,
@@ -138,10 +134,7 @@ export const getAllVideos = async (): Promise<Video[]|null> => {
                     }
                 }
             }
-        });
-
-        console.log('Videos', videos);
-        
+        });        
 
         return videos
 
@@ -150,6 +143,17 @@ export const getAllVideos = async (): Promise<Video[]|null> => {
         throw new Error('Error al obtener todos los videos');
     }
 }
+
+export const getVideoById = async (id: string) => {
+  try {
+      const video = await prisma.video.findUnique({ where: { id } });
+      return video;
+  } catch ( err ) {
+      console.log(err);
+      throw new Error('Error al obtener el video');
+  }
+}
+
 
 
 /**

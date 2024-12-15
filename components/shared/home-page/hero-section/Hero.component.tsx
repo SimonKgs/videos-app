@@ -4,7 +4,7 @@ export const Hero = () => {
   return (
     <div className="relative flex w-full">
         <video
-            className="w-full h-full object-cover" 
+            className="w-full h-full max-h-[80vh] object-cover" 
             src="https://res.cloudinary.com/dtts0tqni/video/upload/v1733491031/videos/fire2_q8r8mc.mp4" 
             autoPlay 
             loop 

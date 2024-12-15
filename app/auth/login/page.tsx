@@ -4,6 +4,7 @@ import { CustomButton } from '@/components';
 import { useAuthStore } from '@/store';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { VscLoading } from 'react-icons/vsc';
 
 
 export default function () {
@@ -12,6 +13,7 @@ export default function () {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
 
 /**
@@ -24,12 +26,15 @@ export default function () {
  */
 
     const handleLogin = async() => {
+        setLoading(true);
         await login(email, password);
         const currentMessage = useAuthStore.getState().message;
 
-        if (currentMessage) {
+        if (currentMessage && currentMessage !== 'success') {
             setError(currentMessage);
         }
+
+        setLoading(false);
     };
 
     useEffect(() => {
@@ -74,8 +79,6 @@ export default function () {
                 text="Login" 
             />
 
-
-            {/* divisor l ine */ }
             <div className="flex items-center my-5">
             <div className="flex-1 border-t border-gray-500"></div>
             <div className="px-2 text-gray-800">Or</div>
@@ -86,6 +89,11 @@ export default function () {
                 <CustomButton className='w-full text-gray-200 bg-green-600 hover:bg-green-800' text="Create new account" />
             </Link>
 
+            { loading &&
+                <div className="flex items-center w-full my-5">
+                     <VscLoading fill="#ff3e00" size={70} className="animate-spin" />
+                </div>
+            }
         </div>
         </div>
     );

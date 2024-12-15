@@ -1,7 +1,7 @@
 'use client';
 
 import { create } from 'zustand';
-import { login, logout, register, validateToken } from '../actions/auth/authActions';
+import { login, logout, register, validateTokenAction } from '../actions/auth/authActions';
 
 interface AuthState {
   user: User | null;
@@ -111,15 +111,14 @@ export const useAuthStore = create<AuthState>((set) => ({
 
     const storedToken = localStorage.getItem('videos_token');
     const storedUserId = localStorage.getItem('userId');
-
+    console.log('storedToken', storedToken);
+    
     if (!storedToken || !storedUserId) {
       set({ isAuthenticated: false, user: null, token: null });
       return;
     }
 
-    const result = await validateToken(storedToken);
-
-    console.log('Result:', result);
+    const result = await validateTokenAction(storedToken);
     
     if (result.isAuthenticated && result.user?.id === storedUserId) {
       set({ user: result.user, isAuthenticated: true, token: storedToken });
