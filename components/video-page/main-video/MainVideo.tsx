@@ -69,7 +69,7 @@ export const MainVideo = ({ video }: Props) => {
     <div className="flex flex-col w-full justify-center min-h-64 sm:min-h-96 mt-4 mb-4 sm:my-10">
       <video 
         className=" max-h-[50vh] bg-black"
-        src={video.url} 
+        src={video.secureUrl} 
         controls 
         onEnded={onEnded}
         onPlay={onPlay} 
