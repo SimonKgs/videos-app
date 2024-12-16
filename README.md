@@ -25,7 +25,7 @@ Necesitarás renombrar el archivo copy.env.file to .env.local y modificar sus va
 
 ```
 CLOUDINARY_CLOUD_NAME:
-Lo encontraras segun entras a tu cuenta es el product environment, un desplegable arriba a la izquierda
+Lo encontraras según entras a tu cuenta es el product environment, un desplegable arriba a la izquierda
 CLOUDINARY_API_KEY:
 Debes crearla, en settings API Keys 
 CLOUDINARY_API_SECRET:
@@ -50,9 +50,10 @@ También se debe crear, settings -> Upload presets, es la ruta a la que se subir
 # dependencias utilizadas
 
 1. prisma: para las ayudas con la db
-2. bcrypt: para la encriptación y desencriptación de passwords
-3. jsonwebtoken: para manejar el estado de la sesión
-4. zustand: Para manejar estados globales
+2. Tailwind
+3. bcrypt: para la encriptación y desencriptación de passwords
+4. jsonwebtoken: para manejar el estado de la sesión
+5. zustand: Para manejar estados globales
 
 # Estructura del proyecto
 
