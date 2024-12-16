@@ -59,7 +59,7 @@ También se debe crear, settings -> Upload presets, es la ruta a la que se subir
 
 Está estructurado por carpetas agrupando tipos de archivos:
 
-1. actions: las interacciones con la base de datos
+1. actions: las interacciones con la base de datos, sustituyen a los endpoints
 2. app: las rutas de la aplicación, los layouts y middleware?
 3. components: los distintos componentes, estructurado de manera acorde a las pages 
 4. interfaces: definicion de los tipos de datos
