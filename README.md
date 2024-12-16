@@ -69,6 +69,11 @@ Está estructurado por carpetas agrupando tipos de archivos:
 8. store: los estados globales y las acciones para modificarlos.
 
 
+# Otras herramientas 
+
+1. docker: para la creación rápida de la db en desarrollo
+2. postman: para probar los endpoints de cloudinary antes de integrarlos
+
 # Mejoras posibles
 
 1. Implementación de un middleware para la protección de rutas, actualmente se protegen en el layout pero ya entra la carga, con con un guard protegiendola se optimizaría.
