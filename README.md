@@ -73,32 +73,3 @@ Está estructurado por carpetas agrupando tipos de archivos:
 
 1. docker: para la creación rápida de la db en desarrollo
 2. postman: para probar los endpoints de cloudinary antes de integrarlos
-
-# Mejoras posibles
-
-1. Implementación de un middleware para la protección de rutas, actualmente se protegen en el layout pero ya entra la carga, con con un guard protegiendola se optimizaría.
-
-2. Crear la tabla likes, que almacene video -> like de usuario y migrar la db para implementarlo, esto conlleva algún retoque en el código, para cuando se aumente un like se creé un nuevo registro y cuando se recuperan los videos, si el id del user está en la tabla con el id del current video prohibir nuevos likes.
-
-3. añadir regex al password y más comprobaciones a los inputs para seguridad
-
-4. actualmente se cuenta un video como visto al darle play para temas de analitics quizás fuese mejor contar el tiempo o el porcentaje del video visto, o no dar el view hasta x segundos
-
-5. mejoras visuales
-
-
-# Problemas
-
-1. Falta de conocimiento en NextJS
-
-2. Problemas con la persistencia de la sesión por como está implementado en el layout, un middleware lo solucionaría
-
-3. Tamaño de videos en producción se redujo a 5000KB, en desarrollo se añadió en next.config.ts
-const nextConfig: NextConfig = {
-  /* config options here */
-  experimental: {
-    serverActions: {
-      bodySizeLimit: '10GB',
-    },
-  },
-};
